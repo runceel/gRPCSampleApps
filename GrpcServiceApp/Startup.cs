@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GrpcSampleApp;
+using GrpcServiceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,7 +34,7 @@ namespace GrpcServiceApp
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapGrpcService<GreeterService>();
-                endpoints.MapGrpcService<Employee>();
+                endpoints.MapGrpcService<EmployeeService>();
 
                 endpoints.MapGet("/", async context =>
                 {
