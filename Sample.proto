@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcSampleApp";
+
+import "google/protobuf/empty.proto";
+
+package GrpcSample;
+
+service EmployeeService {
+	// for all users
+	rpc GetEmployees(google.protobuf.Empty) returns (GetEmployeeReply);
+	// for writer users
+	rpc AddEmployee(Employee) returns (AddEmployeeReply);
+	// for admin users
+	rpc DeleteEmployee(DeleteEmployeeRequest) returns (DeleteEmployeeReply);
+}
+
+message GetEmployeeReply {
+	repeated Employee employees = 1;
+}
+
+message AddEmployeeReply {
+	bool succeed = 1;
+}
+
+message DeleteEmployeeRequest {
+	string id = 1;
+}
+
+message DeleteEmployeeReply {
+	bool succeed = 1;
+}
+
+message Employee {
+	string id = 1;
+	string name = 2;
+}
