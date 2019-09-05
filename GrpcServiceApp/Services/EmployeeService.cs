@@ -8,7 +8,7 @@ using GrpcSampleApp;
 
 namespace GrpcServiceApp.Services
 {
-    public class EmployeeService : GrpcSampleApp.EmployeeService.EmployeeServiceBase
+    public class EmployeeService : GrpcSampleApp.Employees.EmployeesBase
     {
         private static List<Employee> Employees { get; } = new List<Employee>();
         public override Task<GetEmployeeReply> GetEmployees(Empty request, ServerCallContext context)

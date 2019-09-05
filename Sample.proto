@@ -6,7 +6,7 @@ import "google/protobuf/empty.proto";
 
 package GrpcSample;
 
-service EmployeeService {
+service Employees {
 	// for all users
 	rpc GetEmployees(google.protobuf.Empty) returns (GetEmployeeReply);
 	// for writer users
