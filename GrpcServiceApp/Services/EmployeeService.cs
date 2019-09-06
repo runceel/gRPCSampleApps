@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcSampleApp;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GrpcServiceApp.Services
 {
     public class EmployeeService : GrpcSampleApp.Employees.EmployeesBase
     {
         private static List<Employee> Employees { get; } = new List<Employee>();
+        [Authorize("Users")]
         public override Task<GetEmployeeReply> GetEmployees(Empty request, ServerCallContext context)
         {
             lock(Employees)
@@ -22,6 +24,7 @@ namespace GrpcServiceApp.Services
             }
         }
 
+        [Authorize("Writer")]
         public override Task<AddEmployeeReply> AddEmployee(Employee request, ServerCallContext context)
         {
             lock(Employees)
@@ -35,6 +38,7 @@ namespace GrpcServiceApp.Services
             }
         }
 
+        [Authorize("Admins")]
         public override Task<DeleteEmployeeReply> DeleteEmployee(DeleteEmployeeRequest request, ServerCallContext context)
         {
             lock(Employees)

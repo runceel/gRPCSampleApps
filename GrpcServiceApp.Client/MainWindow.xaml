@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GrpcServiceApp.Client"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
     Title="GrpcSample app"
     Width="800"
     Height="450"
@@ -19,12 +20,15 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Margin="5" Content="Sign in" />
+            <Button
+                Margin="5"
+                Click="SignInButton_Click"
+                Content="Sign in" />
             <TextBlock
                 x:Name="textBlockSiginStatus"
                 Grid.Column="1"
                 Margin="5"
-                Text="some status" />
+                Text="Sign in status" />
         </Grid>
         <Grid x:Name="contentPane" Grid.Row="1">
             <TabControl>
@@ -52,14 +56,15 @@
                                         <Button
                                             Grid.Column="1"
                                             Click="DeleteEmployeeButton_Click"
-                                            Content="Delete" />
+                                            Content="Delete"
+                                            IsEnabled="{Binding IsInAdminsRole, ElementName=root}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Add employee">
+                <TabItem x:Name="tabItemAddEmployee" Header="Add employee">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
